@@ -1,5 +1,7 @@
 # Toggl Track TUI
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A terminal user interface for Toggl Track, allowing you to manage your time entries directly from the command line.
 
 This is inspired by [togglCli](https://github.com/AuHau/toggl-cli) but written in TypeScript and added some features:
