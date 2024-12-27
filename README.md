@@ -5,10 +5,22 @@ A terminal user interface for Toggl Track, allowing you to manage your time entr
 This is inspired by [togglCli](https://github.com/AuHau/toggl-cli) but written in TypeScript and added some features:
 - Finding clients and projects by name
 - Easy way to add new clients and projects
+- Automated releases with pre-built executables for all platforms
 
 [![asciicast](https://asciinema.org/a/f0YEagkHr4IfPBR4AcNQbSN0Y.svg)](https://asciinema.org/a/f0YEagkHr4IfPBR4AcNQbSN0Y)
 
 ## Installation
+
+You can either download the pre-built executables from the [latest release](../../releases/latest) or build from source.
+
+### Using pre-built executables
+
+1. Download the appropriate executable for your system from the [latest release](../../releases/latest)
+2. Rename it to `tttui` (or `tttui.exe` on Windows)
+3. Make it executable (on Unix systems): `chmod +x tttui`
+4. Move it to a directory in your PATH
+
+### Building from source
 
 ```bash
 # Clone the repository
