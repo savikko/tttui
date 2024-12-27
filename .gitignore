@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+yarn-error.log
+
+# Build outputs
+dist/
+bin/
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Environment and local config
+.env
+.env.local
+.env.*.local
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log* 

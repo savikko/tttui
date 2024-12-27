@@ -1,0 +1,67 @@
+{
+  "name": "tttui",
+  "version": "1.0.0",
+  "description": "Toggl Track TUI - A terminal user interface for Toggl Track",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "bin": "dist/index.cjs",
+  "pkg": {
+    "targets": [
+      "node18-linux-x64",
+      "node18-macos-x64",
+      "node18-macos-arm64",
+      "node18-win-x64"
+    ],
+    "outputPath": "bin",
+    "scripts": [
+      "dist/index.cjs"
+    ]
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:bundle": "rollup -c",
+    "start": "node dist/index.js",
+    "dev": "NODE_NO_WARNINGS=1 tsx src/index.ts",
+    "package": "yarn build:bundle && pkg .",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json}\"",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json}": [
+      "prettier --write"
+    ]
+  },
+  "keywords": [
+    "toggl",
+    "track",
+    "tui",
+    "cli"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@inquirer/prompts": "^7.2.1",
+    "@types/inquirer": "^9.0.7",
+    "@types/inquirer-autocomplete-prompt": "^3.0.3",
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.7",
+    "inquirer": "^12.3.0",
+    "inquirer-autocomplete-prompt": "^3.0.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/node": "^22.10.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.11",
+    "pkg": "^5.8.1",
+    "prettier": "^3.4.2",
+    "rollup": "^4.29.1",
+    "tslib": "^2.8.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
