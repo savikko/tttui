@@ -12,10 +12,7 @@ import { Workspace, Client, Project, TimeEntry } from './api/types';
 
 const program = new Command();
 
-program
-  .name('tttui')
-  .description('Toggl Track TUI - A terminal user interface for Toggl Track')
-  .version('1.0.0');
+program.name('tttui').description('tttui - A terminal user interface for Toggl Track');
 
 program
   .command('stop')
@@ -75,7 +72,7 @@ async function ensureApiToken(): Promise<string> {
     return token;
   }
 
-  console.log('Welcome to TogglTrackTui!');
+  console.log('Welcome to tttui!');
   console.log('Please enter your Toggl API token to get started.');
   console.log('You can find your API token at: https://track.toggl.com/profile');
 
