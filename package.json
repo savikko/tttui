@@ -1,6 +1,6 @@
 {
   "name": "tttui",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Toggl Track TUI - A terminal user interface for Toggl Track",
   "type": "module",
   "main": "dist/index.cjs",
@@ -38,7 +38,7 @@
     "tui",
     "cli"
   ],
-  "author": "",
+  "author": "savikko",
   "license": "MIT",
   "dependencies": {
     "@inquirer/prompts": "^7.2.1",
@@ -54,12 +54,19 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-typescript": "^12.1.2",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.1",
+    "@semantic-release/npm": "^12.0.1",
+    "@semantic-release/release-notes-generator": "^14.0.2",
     "@types/node": "^22.10.2",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.11",
     "pkg": "^5.8.1",
     "prettier": "^3.4.2",
     "rollup": "^4.29.1",
+    "semantic-release": "^24.2.0",
     "tslib": "^2.8.1",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"

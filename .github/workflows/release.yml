@@ -5,42 +5,36 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  packages: write
+
 jobs:
-  build:
+  release:
+    name: Release
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'yarn'
-      
+          node-version: "lts/*"
+          registry-url: 'https://registry.npmjs.org'
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      
-      - name: Build executables
-        run: yarn package
-      
-      - name: Get current date
-        id: date
-        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
-      
-      - name: Create Release
-        id: create_release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v${{ steps.date.outputs.date }}
-          name: Release ${{ steps.date.outputs.date }}
-          draft: false
-          prerelease: false
-          files: |
-            bin/tttui-macos-arm64
-            bin/tttui-macos-x64
-            bin/tttui-linux-x64
-            bin/tttui-win-x64.exe
-          fail_on_unmatched_files: true
-          generate_release_notes: true 
+
+      - name: Build
+        run: yarn build:bundle
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release 
