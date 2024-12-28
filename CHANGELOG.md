@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/savikko/tttui/compare/v1.0.6...v1.0.7) (2024-12-28)
+
+
+### Bug Fixes
+
+* change description of "start new" so that it can be selected pressing N (and Stop with S and change description with C) ([e5c3b8c](https://github.com/savikko/tttui/commit/e5c3b8c00a82c0bb55f1e92360ee27395c465340))
+
 ## [1.0.6](https://github.com/savikko/tttui/compare/v1.0.5...v1.0.6) (2024-12-28)
 
 
