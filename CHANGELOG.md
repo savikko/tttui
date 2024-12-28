@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/savikko/tttui/compare/v1.0.5...v1.0.6) (2024-12-28)
+
+
+### Bug Fixes
+
+* strings to have tttui instead of Toggl Track TUI ([9d6432f](https://github.com/savikko/tttui/commit/9d6432fc172194192742e2b67c9818ba15a8ae88))
+
 ## [1.0.5](https://github.com/savikko/tttui/compare/v1.0.4...v1.0.5) (2024-12-28)
 
 
