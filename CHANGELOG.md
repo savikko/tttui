@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/savikko/tttui/compare/v1.0.4...v1.0.5) (2024-12-28)
+
+
+### Bug Fixes
+
+* add mention about direnv to README ([f2fa157](https://github.com/savikko/tttui/commit/f2fa1579877503fc394807f515efdc5c54736b3b))
+
 ## [1.0.4](https://github.com/savikko/tttui/compare/v1.0.3...v1.0.4) (2024-12-28)
 
 
