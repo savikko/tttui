@@ -363,7 +363,7 @@ async function main() {
       const shouldStop = await select({
         message: `Found running time entry "${currentEntry.description}"${projectInfo}. What would you like to do?`,
         choices: [
-          { name: 'Start a new one', value: 'new' },
+          { name: 'New time entry (stop current)', value: 'new' },
           { name: 'Change description', value: 'change' },
           { name: 'Stop it', value: 'stop' },
         ],
