@@ -15,13 +15,14 @@ This is inspired by [togglCli](https://github.com/AuHau/toggl-cli) but written i
 
 Easiest way to install this is to install with npm:
 ```bash
-npm install -g tttui
+npm install -g @savikko/tttui
 ```
 
-
-You can either download the pre-built executables from the [latest release](../../releases/latest) or build from source.
+You can also download the pre-built executables from the [latest release](../../releases/latest) or build from source.
 
 ### Using pre-built executables
+
+If you have no Node.js installed, you can use the pre-built executables.
 
 1. Download the appropriate executable for your system from the [latest release](../../releases/latest)
 2. Rename it to `tttui` (or `tttui.exe` on Windows)
