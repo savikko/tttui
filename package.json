@@ -1,6 +1,6 @@
 {
   "name": "@savikko/tttui",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Toggl Track TUI - A terminal user interface for Toggl Track",
   "type": "module",
   "main": "dist/index.cjs",

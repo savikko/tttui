@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/savikko/tttui/compare/v1.0.3...v1.0.4) (2024-12-28)
+
+
+### Bug Fixes
+
+* add correct package name to README ([d024bbe](https://github.com/savikko/tttui/commit/d024bbec9f042fea14eeca7e8e6dc8671b6b46c4))
+
 ## [1.0.3](https://github.com/savikko/tttui/compare/v1.0.2...v1.0.3) (2024-12-28)
 
 
