@@ -107,6 +107,8 @@ Also, when running `tttui` and you have a running time entry, it will stop the p
 
 ## Environment Variables
 
+For me, the use case is that I am utilizing [direnv](https://direnv.net/) to manage my environment variables.
+
 ### TOGGL_API_TOKEN
 
 You can set your API token using the `TOGGL_API_TOKEN` environment variable:
