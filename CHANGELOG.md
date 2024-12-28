@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/savikko/tttui/compare/v1.0.2...v1.0.3) (2024-12-28)
+
+
+### Bug Fixes
+
+* remove unused deps ([1cc525d](https://github.com/savikko/tttui/commit/1cc525d4e4c15b5e96b7eec14dc87b1010700c38))
+
 ## [1.0.2](https://github.com/savikko/tttui/compare/v1.0.1...v1.0.2) (2024-12-28)
 
 
