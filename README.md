@@ -13,6 +13,12 @@ This is inspired by [togglCli](https://github.com/AuHau/toggl-cli) but written i
 
 ## Installation
 
+Easiest way to install this is to install with npm:
+```bash
+npm install -g tttui
+```
+
+
 You can either download the pre-built executables from the [latest release](../../releases/latest) or build from source.
 
 ### Using pre-built executables
