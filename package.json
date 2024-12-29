@@ -4,7 +4,10 @@
   "description": "Toggl Track TUI - A terminal user interface for Toggl Track",
   "type": "module",
   "main": "dist/index.cjs",
-  "bin": "dist/index.cjs",
+  "bin": {
+    "tttui": "dist/index.cjs",
+    "t": "dist/index.cjs"
+  },
   "pkg": {
     "targets": [
       "node18-linux-x64",
