@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/savikko/tttui/compare/v1.1.0...v1.1.1) (2024-12-29)
+
+
+### Bug Fixes
+
+* do not show currently running entry separately as it is already on the list anyway ([d5c027a](https://github.com/savikko/tttui/commit/d5c027a28450faee9c1b4656a9e549ddbc26667e))
+
 # [1.1.0](https://github.com/savikko/tttui/compare/v1.0.9...v1.1.0) (2024-12-29)
 
 
