@@ -139,19 +139,60 @@ export class TogglClient {
   }
 
   async getRecentTimeEntries(workspaceId: number, projectId?: number): Promise<TimeEntry[]> {
-    const startDate = new Date();
-    startDate.setMonth(startDate.getMonth() - 3); // Get entries from last 3 months
+    const entries = await this.request<TimeEntry[]>(
+      `/workspaces/${workspaceId}/time_entries?project_id=${projectId}`
+    );
+    return entries;
+  }
 
-    const entries = await this.request<TimeEntry[]>('/me/time_entries');
-    const recentEntries = entries.filter((entry) => {
+  async getRecentTimeEntriesWithDetails(
+    workspaceId: number,
+    limit: number = 10
+  ): Promise<TimeEntry[]> {
+    // Get entries from the last month
+    const endDate = new Date();
+    const startDate = new Date();
+    startDate.setMonth(startDate.getMonth() - 1);
+
+    const entries = await this.request<TimeEntry[]>(`/me/time_entries`);
+
+    // Filter entries by workspace and date
+    const filteredEntries = entries.filter((entry) => {
       const entryDate = new Date(entry.start);
-      return entryDate >= startDate && entry.workspace_id === workspaceId;
+      return entry.workspace_id === workspaceId && entryDate >= startDate && entryDate <= endDate;
     });
 
-    if (projectId) {
-      return recentEntries.filter((entry) => entry.project_id === projectId);
-    }
-    return recentEntries;
+    // Get all unique project IDs from entries
+    const projectIds = new Set(
+      filteredEntries.filter((e) => e.project_id).map((e) => e.project_id)
+    );
+
+    // Fetch all projects in one go
+    const projects = await this.getProjects(workspaceId);
+
+    // Get all unique client IDs from projects
+    const clientIds = new Set(projects.filter((p) => p.client_id).map((p) => p.client_id));
+
+    // Fetch all clients in one go
+    const clients = await this.getClients(workspaceId);
+
+    // Create lookup maps
+    const projectMap = new Map(projects.map((p) => [p.id, p]));
+    const clientMap = new Map(clients.map((c) => [c.id, c]));
+
+    // Sort entries by start date (newest first) and take the first 'limit' entries
+    const sortedEntries = filteredEntries
+      .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime())
+      .slice(0, limit);
+
+    // Enrich entries with project and client details
+    return sortedEntries.map((entry) => ({
+      ...entry,
+      project: entry.project_id ? projectMap.get(entry.project_id) : undefined,
+      client: entry.project_id
+        ? clientMap.get(projectMap.get(entry.project_id)?.client_id || 0)
+        : undefined,
+    }));
   }
 
   async getClientDetails(workspaceId: number, clientId: number): Promise<Client> {

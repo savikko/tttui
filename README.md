@@ -9,6 +9,7 @@ Reason for this project is that I wanted to change client / project fast from co
 This is inspired by [togglCli](https://github.com/AuHau/toggl-cli) but written in TypeScript and added some features:
 - Finding clients and projects by name
 - Easy way to add new clients and projects
+- Listing recent time entries
 
 Supports also multiple (Toggl Track) workspaces, but if you have only one workspace, it will use that one without asking.
 
@@ -85,7 +86,7 @@ chmod +x ~/bin/tttui
 alias t=tttui
 ```
 
-Now you can run `tttui` (or just `t` if you added the alias) from anywhere!
+Now you can run `tttui` (or just `t`) from anywhere!
 
 ## Usage
 
@@ -109,6 +110,34 @@ tttui stop  # or 't stop'
 ```
 
 Also, when running `tttui` and you have a running time entry, it will stop the previous time entry and start a new one.
+
+### Listing Time Entries
+
+```bash
+tttui list  # or 't list'
+```
+
+This will show:
+1. Currently running time entry (if any)
+2. Recent time entries grouped by day, showing for each entry:
+   - Duration in hours and minutes (e.g., "01h30m")
+   - Time range [HH:MM-HH:MM]
+   - Description
+   - Client and project information
+   - Status (🟢 for running, ⚫ for completed)
+
+Example output:
+```
+Currently running:
+🟢 01h30m [14:30-16:00] Current task (Client - Project)
+
+Recent entries:
+
+2024-03-21:
+----------------
+⚫ 00h45m [09:15-10:00] Task 1 (Client - Project)
+⚫ 01h15m [10:30-11:45] Task 2 (Client - Project)
+```
 
 ## Environment Variables
 

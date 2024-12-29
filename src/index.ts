@@ -59,6 +59,85 @@ program
     }
   });
 
+program
+  .command('list')
+  .description('List recent time entries')
+  .action(async () => {
+    try {
+      const token = await ensureApiToken();
+      const client = new TogglClient(token);
+      const currentEntry = await client.getCurrentTimeEntry();
+
+      // Get the workspace ID from current entry or select workspace
+      const workspace = currentEntry
+        ? { id: currentEntry.workspace_id }
+        : await selectWorkspace(client);
+
+      const entries = await client.getRecentTimeEntriesWithDetails(workspace.id);
+
+      // Format duration helper function
+      const formatDuration = (minutes: number): string => {
+        const hours = Math.floor(minutes / 60);
+        const mins = minutes % 60;
+        return `${hours.toString().padStart(2, '0')}h${mins.toString().padStart(2, '0')}m`;
+      };
+
+      // Format time range helper function
+      const formatTimeRange = (start: string, stop?: string): string => {
+        const startTime = new Date(start);
+        const stopTime = stop ? new Date(stop) : new Date();
+        const formatTime = (date: Date) =>
+          `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+        return `[${formatTime(startTime)}-${formatTime(stopTime)}]`;
+      };
+
+      // Show current entry first if exists
+      if (currentEntry) {
+        const duration = Math.floor((Date.now() / 1000 - currentEntry.start_timestamp) / 60);
+        console.log('\nCurrently running:');
+        console.log(
+          `🟢 ${formatDuration(duration)} ${formatTimeRange(currentEntry.start)} ${currentEntry.description} ${
+            currentEntry.project?.name
+              ? `(${currentEntry.client?.name || 'No client'} - ${currentEntry.project.name})`
+              : ''
+          }`
+        );
+      }
+
+      // Group entries by day
+      const entriesByDay = new Map<string, TimeEntry[]>();
+      entries.forEach((entry) => {
+        const date = new Date(entry.start);
+        const dateKey = date.toISOString().split('T')[0];
+        if (!entriesByDay.has(dateKey)) {
+          entriesByDay.set(dateKey, []);
+        }
+        entriesByDay.get(dateKey)?.push(entry);
+      });
+
+      // Show entries grouped by day
+      console.log('\nRecent entries:');
+      Array.from(entriesByDay.entries())
+        .sort((a, b) => b[0].localeCompare(a[0])) // Sort days newest first
+        .forEach(([date, dayEntries]) => {
+          console.log(`\n${date}:`);
+          console.log('----------------');
+          dayEntries.forEach((entry) => {
+            const duration = Math.abs(Math.floor(entry.duration / 60));
+            const projectInfo = entry.project?.name
+              ? ` (${entry.client?.name || 'No client'} - ${entry.project.name})`
+              : '';
+            console.log(
+              `${entry.stop ? '⚫' : '🟢'} ${formatDuration(duration)} ${formatTimeRange(entry.start, entry.stop)} ${entry.description}${projectInfo}`
+            );
+          });
+        });
+    } catch (error) {
+      console.error('An error occurred:', error);
+      process.exit(1);
+    }
+  });
+
 // Default command (no arguments) - start a new time entry
 program.action(async () => {
   await main();

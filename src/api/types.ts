@@ -17,11 +17,16 @@ export interface Project {
   client_id: number;
 }
 
-export interface TimeEntry {
+export type TimeEntry = {
   id: number;
-  description: string;
   workspace_id: number;
   project_id?: number;
-  duration: number;
+  description: string;
   start: string;
-}
+  stop?: string;
+  duration: number;
+  start_timestamp: number;
+  // Added fields for enriched data
+  project?: Project;
+  client?: Client;
+};
