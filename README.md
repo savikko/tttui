@@ -4,10 +4,13 @@
 
 A terminal user interface for Toggl Track, allowing you to manage your time entries directly from the command line.
 
+Reason for this project is that I wanted to change client / project fast from command line. Seems that other tools did not support this.
+
 This is inspired by [togglCli](https://github.com/AuHau/toggl-cli) but written in TypeScript and added some features:
 - Finding clients and projects by name
 - Easy way to add new clients and projects
-- Automated releases with pre-built executables for all platforms
+
+Supports also multiple (Toggl Track) workspaces, but if you have only one workspace, it will use that one without asking.
 
 [![asciicast](https://asciinema.org/a/f0YEagkHr4IfPBR4AcNQbSN0Y.svg)](https://asciinema.org/a/f0YEagkHr4IfPBR4AcNQbSN0Y)
 
@@ -18,7 +21,7 @@ Easiest way to install this is to install with npm:
 npm install -g @savikko/tttui
 ```
 
-You can also download the pre-built executables from the [latest release](../../releases/latest) or build from source.
+Then, you can use `tttui` or `t` to start the tool.
 
 ### Using pre-built executables
 
