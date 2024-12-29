@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/savikko/tttui/compare/v1.0.8...v1.0.9) (2024-12-29)
+
+
+### Bug Fixes
+
+* added also `t` as command to start the tool ([4e28a15](https://github.com/savikko/tttui/commit/4e28a1532aa563530bcf71a26af930750eca828e))
+
 ## [1.0.8](https://github.com/savikko/tttui/compare/v1.0.7...v1.0.8) (2024-12-29)
 
 
