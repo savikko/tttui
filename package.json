@@ -17,7 +17,8 @@
     ],
     "outputPath": "bin",
     "scripts": [
-      "dist/index.cjs"
+      "dist/index.cjs",
+      "dist/*-*.cjs"
     ]
   },
   "scripts": {

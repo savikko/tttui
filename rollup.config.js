@@ -6,9 +6,11 @@ import json from '@rollup/plugin-json';
 export default {
   input: 'src/index.ts',
   output: {
-    file: 'dist/index.cjs',
+    dir: 'dist',
     format: 'cjs',
     sourcemap: false,
+    entryFileNames: '[name].cjs',
+    chunkFileNames: '[name]-[hash].cjs',
   },
   plugins: [
     typescript({
