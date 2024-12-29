@@ -117,9 +117,7 @@ Also, when running `tttui` and you have a running time entry, it will stop the p
 tttui list  # or 't list'
 ```
 
-This will show:
-1. Currently running time entry (if any)
-2. Recent time entries grouped by day, showing for each entry:
+This will show recent time entries grouped by day, showing for each entry:
    - Duration in hours and minutes (e.g., "01h30m")
    - Time range [HH:MM-HH:MM]
    - Description
@@ -128,9 +126,6 @@ This will show:
 
 Example output:
 ```
-Currently running:
-🟢 01h30m [14:30-16:00] Current task (Client - Project)
-
 Recent entries:
 
 2024-03-21:

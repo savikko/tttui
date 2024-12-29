@@ -69,12 +69,8 @@ program
     try {
       const token = await ensureApiToken();
       const client = new TogglClient(token);
-      const currentEntry = await client.getCurrentTimeEntry();
 
-      // Get the workspace ID from current entry or select workspace
-      const workspace = currentEntry
-        ? { id: currentEntry.workspace_id }
-        : await selectWorkspace(client);
+      const workspace = await selectWorkspace(client);
 
       const entries = await client.getRecentTimeEntriesWithDetails(workspace.id);
 
@@ -93,19 +89,6 @@ program
           `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
         return `[${formatTime(startTime)}-${formatTime(stopTime)}]`;
       };
-
-      // Show current entry first if exists
-      if (currentEntry) {
-        const duration = Math.floor((Date.now() / 1000 - currentEntry.start_timestamp) / 60);
-        console.log('\nCurrently running:');
-        console.log(
-          `🟢 ${formatDuration(duration)} ${formatTimeRange(currentEntry.start)} ${currentEntry.description} ${
-            currentEntry.project?.name
-              ? `(${currentEntry.client?.name || 'No client'} - ${currentEntry.project.name})`
-              : ''
-          }`
-        );
-      }
 
       // Group entries by day
       const entriesByDay = new Map<string, TimeEntry[]>();
