@@ -9,13 +9,16 @@ import { Command } from 'commander';
 import { TogglClient } from './api/client';
 import { getApiToken, setApiToken, getLastSelected, setLastSelected } from './config';
 import { Workspace, Client, Project, TimeEntry } from './api/types';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import { fileURLToPath } from 'url';
 
 const program = new Command();
 
 // Read version from package.json
-const { version } = await import('../package.json', {
-  assert: { type: 'json' },
-});
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+const packageJson = JSON.parse(readFileSync(join(__dirname, '../package.json'), 'utf-8'));
+const version = packageJson.version;
 
 program
   .name('tttui')

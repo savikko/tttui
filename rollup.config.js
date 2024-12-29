@@ -11,6 +11,7 @@ export default {
     sourcemap: false,
     entryFileNames: '[name].cjs',
     chunkFileNames: '[name]-[hash].cjs',
+    inlineDynamicImports: true,
   },
   plugins: [
     typescript({
@@ -42,6 +43,7 @@ export default {
     'net',
     'tty',
     'zlib',
+    'url',
     // Runtime dependencies that pkg will handle
     '@inquirer/prompts',
     'commander',
