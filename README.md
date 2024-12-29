@@ -27,6 +27,8 @@ Then, you can use `tttui` or `t` to start the tool.
 
 If you have no Node.js installed, you can use the pre-built executables.
 
+Executables are built with `pkg`. Tried also Node.JS SEA but couldn't get it to work.
+
 1. Download the appropriate executable for your system from the [latest release](../../releases/latest)
 2. Rename it to `tttui` (or `tttui.exe` on Windows)
 3. Make it executable (on Unix systems): `chmod +x tttui`
