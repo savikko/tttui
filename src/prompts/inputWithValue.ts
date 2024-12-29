@@ -11,6 +11,8 @@ import {
 } from '@inquirer/core';
 import type { PartialDeep } from '@inquirer/type';
 
+const DEBUG = false;
+
 type InputTheme = {
   validationFailureMode: 'keep' | 'clear';
 };
@@ -39,19 +41,51 @@ export default createPrompt<string, InputConfig>((config, done) => {
   const prefix = usePrefix({ status, theme });
 
   useKeypress(async (key, rl) => {
-    // Write initial value on first keypress
-    if (!hasInitialized && config.value) {
+    if (DEBUG) {
+      console.log('Keypress event:', {
+        key,
+        hasInitialized,
+        currentLine: rl.line,
+        currentValue: value,
+        status,
+      });
+    }
+
+    // Write initial value if not initialized
+    if (!hasInitialized) {
+      if (DEBUG) console.log('Initializing with value:', config.value);
       setHasInitialized(true);
-      rl.write(config.value);
-      return;
+      if (config.value) {
+        const currentInput = rl.line; // Save the current input
+        setValue('');
+        rl.line = '';
+        rl.write(config.value);
+        if (currentInput) {
+          rl.write(currentInput); // Append the current input after the initial value
+        }
+        // If it was an arrow key, write the escape sequence
+        if (key.name === 'left') {
+          process.stdout.write('\x1B[D'); // Exact sequence from the logs
+        }
+        if (DEBUG) {
+          console.log('After initialization:', {
+            line: rl.line,
+            value,
+            currentInput,
+            keyName: key.name,
+          });
+        }
+      }
     }
 
     // Ignore keypress while our prompt is doing other processing.
     if (status !== 'idle') {
+      if (DEBUG) console.log('Ignoring keypress, status:', status);
       return;
     }
 
     if (isEnterKey(key)) {
+      if (DEBUG) console.log('Enter key pressed');
       const answer = rl.line || value;
       setStatus('loading');
 
