@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/savikko/tttui/compare/v1.0.9...v1.1.0) (2024-12-29)
+
+
+### Bug Fixes
+
+* show version with -v ([c64573e](https://github.com/savikko/tttui/commit/c64573ec696d1478b652035683e81ef48f0f3903))
+
+
+### Features
+
+* listing time entries with list command ([040a713](https://github.com/savikko/tttui/commit/040a71346baf71fd537470a3a77600635aab1a4f))
+
 ## [1.0.9](https://github.com/savikko/tttui/compare/v1.0.8...v1.0.9) (2024-12-29)
 
 
