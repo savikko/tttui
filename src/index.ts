@@ -12,7 +12,15 @@ import { Workspace, Client, Project, TimeEntry } from './api/types';
 
 const program = new Command();
 
-program.name('tttui').description('tttui - A terminal user interface for Toggl Track');
+// Read version from package.json
+const { version } = await import('../package.json', {
+  assert: { type: 'json' },
+});
+
+program
+  .name('tttui')
+  .description('tttui - A terminal user interface for Toggl Track')
+  .version(version, '-v, --version', 'Show the current version');
 
 program
   .command('stop')
