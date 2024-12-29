@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/savikko/tttui/compare/v1.0.7...v1.0.8) (2024-12-29)
+
+
+### Bug Fixes
+
+* somewhat better change description handling (relates to issue [#1](https://github.com/savikko/tttui/issues/1)) ([1f32481](https://github.com/savikko/tttui/commit/1f32481ba6865207faa1dcecfc6f28ac76ca54d3))
+
 ## [1.0.7](https://github.com/savikko/tttui/compare/v1.0.6...v1.0.7) (2024-12-28)
 
 
