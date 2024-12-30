@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/savikko/tttui/compare/v1.1.1...v1.1.2) (2024-12-30)
+
+
+### Bug Fixes
+
+* issue with time_entries fetch (which resulted 405) ([f79729b](https://github.com/savikko/tttui/commit/f79729bfe1256fe5e87c1271fe9bcd11f2bc2483))
+
 ## [1.1.1](https://github.com/savikko/tttui/compare/v1.1.0...v1.1.1) (2024-12-29)
 
 
