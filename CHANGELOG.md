@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/savikko/tttui/compare/v1.1.2...v1.2.0) (2024-12-30)
+
+
+### Features
+
+* editing previous time entries (start/end/description) by `t edit` ([f02069e](https://github.com/savikko/tttui/commit/f02069ecca7eedfce135c96ade822eef8f8b64ba))
+
 ## [1.1.2](https://github.com/savikko/tttui/compare/v1.1.1...v1.1.2) (2024-12-30)
 
 
