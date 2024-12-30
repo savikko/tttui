@@ -139,9 +139,10 @@ export class TogglClient {
   }
 
   async getRecentTimeEntries(workspaceId: number, projectId?: number): Promise<TimeEntry[]> {
-    const entries = await this.request<TimeEntry[]>(
-      `/workspaces/${workspaceId}/time_entries?project_id=${projectId}`
-    );
+    const entries = await this.request<TimeEntry[]>('/me/time_entries');
+    if (projectId) {
+      return entries.filter((entry) => entry.project_id === projectId);
+    }
     return entries;
   }
 
