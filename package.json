@@ -47,6 +47,7 @@
   "dependencies": {
     "@inquirer/prompts": "^7.2.1",
     "commander": "^12.1.0",
+    "dayjs": "^1.11.13",
     "dotenv": "^16.4.7"
   },
   "devDependencies": {

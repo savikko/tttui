@@ -124,6 +124,17 @@ This will show recent time entries grouped by day, showing for each entry:
    - Client and project information
    - Status (🟢 for running, ⚫ for completed)
 
+### Editing Time Entries
+
+```bash
+tttui edit  # or 't edit'
+```
+
+This command allows you to edit recent time entries:
+1. Shows a list of your 10 most recent time entries
+2. Select an entry to edit
+3. Edit the start time, end time, and description
+
 Example output:
 ```
 Recent entries:

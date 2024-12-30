@@ -196,6 +196,21 @@ export class TogglClient {
     }));
   }
 
+  async updateTimeEntry(
+    workspaceId: number,
+    timeEntryId: number,
+    data: {
+      start?: string;
+      stop?: string;
+      description?: string;
+    }
+  ): Promise<TimeEntry> {
+    return this.request<TimeEntry>(`/workspaces/${workspaceId}/time_entries/${timeEntryId}`, {
+      method: 'PUT',
+      body: data,
+    });
+  }
+
   async getClientDetails(workspaceId: number, clientId: number): Promise<Client> {
     const clients = await this.getClients(workspaceId);
     const client = clients.find((c) => c.id === clientId);

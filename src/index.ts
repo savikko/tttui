@@ -4,7 +4,6 @@
 process.removeAllListeners('warning');
 
 import { select, input, search } from '@inquirer/prompts';
-import inputWithValue from './prompts/inputWithValue';
 import { Command } from 'commander';
 import { TogglClient } from './api/client';
 import { getApiToken, setApiToken, getLastSelected, setLastSelected } from './config';
@@ -12,6 +11,9 @@ import { Workspace, Client, Project, TimeEntry } from './api/types';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { fileURLToPath } from 'url';
+import { editCommand } from './commands/edit';
+import dayjs from 'dayjs';
+import timeEntryEdit from './prompts/timeEntryEdit';
 
 const program = new Command();
 
@@ -122,6 +124,13 @@ program
       console.error('An error occurred:', error);
       process.exit(1);
     }
+  });
+
+program
+  .command('edit')
+  .description('Edit a recent time entry')
+  .action(async () => {
+    await editCommand();
   });
 
 // Default command (no arguments) - start a new time entry
@@ -453,20 +462,22 @@ async function main() {
       }
 
       if (shouldStop === 'change') {
-        const newDescription = await inputWithValue({
-          message: 'Edit description:',
-          value: currentEntry.description,
+        const editResult = await timeEntryEdit({
+          message: 'Edit running time entry',
+          startTime: dayjs(currentEntry.start).format('HH:mm YYYY-MM-DD'),
+          description: currentEntry.description,
         });
 
-        if (newDescription !== currentEntry.description) {
-          const updatedEntry = await client.updateTimeEntryDescription(
-            currentEntry.workspace_id,
-            currentEntry.id,
-            newDescription
-          );
+        const updatedEntry = await client.updateTimeEntry(
+          currentEntry.workspace_id,
+          currentEntry.id,
+          {
+            start: dayjs(editResult.startTime).toISOString(),
+            description: editResult.description,
+          }
+        );
 
-          console.log(`Updated time entry description to: "${updatedEntry.description}"`);
-        }
+        console.log(`Updated time entry: "${updatedEntry.description}"`);
         process.exit(0);
       }
     }
